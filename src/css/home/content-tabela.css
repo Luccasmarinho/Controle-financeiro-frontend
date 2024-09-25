@@ -1,0 +1,39 @@
+.content__tabela {
+    background-color: white;
+    border: 1px solid #00000055;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.tabela {
+    width: 100%;
+}
+
+.tabela__cabecalho {
+    text-align: left;
+}
+
+.tabela__linha {
+    width: 97%;
+    height: 1px;
+    background-color: #00000029;
+    border-radius: 5px;
+    position: absolute;
+    top: 258px;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.corpo__btn-trash {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.corpo__btn-trash:hover {
+    color: red;
+}
+

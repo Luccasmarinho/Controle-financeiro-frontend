@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de gastos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/home/style.css">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <h2 class="cabecalho__titulo">Controle financeiro</h2>
+    </header>
+
+    <main class="content">
+
+        <section class="content__entrada-saida-total">
+
+            <div class="content__box-values content__entrada">
+                <div class="box-values__text-icone">
+                    <p class="box-values-text">Entradas</p>
+                    <i class="fa-solid fa-arrow-up box-values__icone" id="icon-entrada"></i>
+                </div>
+                <div class="box-values__value">
+                    <span class="value value__entrada">R$ 1500.00</span>
+                </div>
+            </div>
+
+            <div class="content__box-values content__saida">
+                <div class="box-values__text-icone">
+                    <p class="box-values-text">Saídas</p>
+                    <i class="fa-solid fa-arrow-down box-values__icone" id="icon-saida"></i>
+                </div>
+                <div class="box-values__value">
+                    <span class="value value__saida">R$ 1500.00</span>
+                </div>
+            </div>
+
+            <div class="content__box-values content__total">
+                <div class="box-values__text-icone">
+                    <p class="box-values-text">Total</p>
+                    <i class="fa-solid fa-dollar-sign box-values__icone" id="icon-total"></i>
+                </div>
+                <div class="box-values__value">
+                    <span class="value value__total">R$ 1500.00</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="content__formulario">
+            <form action="#" class="formulario">
+
+                <div class="formulario__input-area">
+                    <label for="input-descricao">Categoria</label>
+                    <input type="text" class="formulario__input" id="input-descricao">
+                </div>
+
+                <div class="formulario__input-area">
+                    <label for="input-valor">Valor</label>
+                    <input type="number" class="formulario__input" id="input-valor">
+                </div>
+
+                <div class="formulario__input-area-radio">
+                    <input type="radio" value="entrada" id="radio-entrada" name="entrada-saida" checked>
+                    <label for="radio-entrada">Entrada</label>
+                    <input type="radio" value="saida" id="radio-saida" name="entrada-saida">
+                    <label for="radio-saida">Saída</label>
+                </div>
+
+                <div class="formulario__btn-adicionar">
+                    <button class="btn-adicionar">Adicionar</button>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="content__tabela">
+
+            <table class="tabela">
+                <thead>
+                    <tr class="tabela__cabecalho">
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+
+                <div class="tabela__linha"></div>
+
+                <tbody>
+                    <tr class="tabela__corpo">
+                        <td>Salário</td>
+                        <td>1500</td>
+                        <td> <i class="fa-solid fa-arrow-down" id="icon-saida"></i> </td>
+                        <td>
+                            <button class="corpo__btn-trash">
+                                <i class="fa-solid fa-trash" id="icone-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </section>
+    </main>
+    <!-- <script src="../js/consulta-api.js" type="module"></script> -->
+</body>
+
+</html>
