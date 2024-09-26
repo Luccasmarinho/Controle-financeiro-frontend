@@ -7,14 +7,10 @@ const inputEmail = document.querySelector("[type=email]");
 const inputSenha = document.querySelectorAll("[type=password]");
 
 function redir() {
-    window.location.href = "../pages/index.html"
+    window.location.href = "../../../index.html"
 }
 
 document.getElementById("link-login").addEventListener("click", redir);
-
-function validarSenhasIguais() {
-
-}
 
 // function cadastroDeUsuario(evento) {
 //     evento.preventDefault()
@@ -23,7 +19,6 @@ function validarSenhasIguais() {
 
 formulario.addEventListener("submit", async (event) => {
     event.preventDefault()
-    debugger
     if (inputSenha[0].value !== inputSenha[1].value) {
         inputSenha[0].style.border = "2px solid red"
         inputSenha[1].style.border = "2px solid red"
@@ -41,7 +36,7 @@ formulario.addEventListener("submit", async (event) => {
         }
     }
     setTimeout(() => {
-        window.location.href = "../pages/index.html"
+        window.location.href = "../../../index.html"
     }, 2000)
 })
 
