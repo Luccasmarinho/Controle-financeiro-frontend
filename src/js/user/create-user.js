@@ -12,13 +12,8 @@ function redir() {
 
 document.getElementById("link-login").addEventListener("click", redir);
 
-// function cadastroDeUsuario(evento) {
-//     evento.preventDefault()
-//     validarSenhasIguais()
-// }
-
-formulario.addEventListener("submit", async (event) => {
-    event.preventDefault()
+async function cadastroDeUsuario(evento) {
+    evento.preventDefault()
     if (inputSenha[0].value !== inputSenha[1].value) {
         inputSenha[0].style.border = "2px solid red"
         inputSenha[1].style.border = "2px solid red"
@@ -38,6 +33,9 @@ formulario.addEventListener("submit", async (event) => {
     setTimeout(() => {
         window.location.href = "../../../index.html"
     }, 2000)
-})
+
+}
+
+formulario.addEventListener("submit", (event) => cadastroDeUsuario(event))
 
 
