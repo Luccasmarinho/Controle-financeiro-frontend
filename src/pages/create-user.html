@@ -9,6 +9,7 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/login-form/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -33,15 +34,14 @@
                 </div>
 
                 <div class="formulario__input-area">
-                    <input type="password" class="input-area__input" placeholder="Senha" required>
+                    <input type="password" class="input-area__input" placeholder="Senha" required id="input-pass">
                     <i class="fa-solid fa-eye" id="icon-eye"></i>
-                    <!-- <i class="fa-solid fa-eye-slash"></i> -->
                 </div>
 
                 <div class="formulario__input-area">
-                    <input type="password" class="input-area__input" placeholder="Repita senha" required>
+                    <input type="password" class="input-area__input" placeholder="Repita senha" required
+                        id="input-pass">
                     <i class="fa-solid fa-eye" id="icon-eye"></i>
-                    <!-- <i class="fa-solid fa-eye-slash"></i> -->
                 </div>
 
                 <div class="formulario__btn">
@@ -52,13 +52,16 @@
 
                 <p class="formulario__cadastre-se">
                     Já tem uma conta?
-                    <a href="index.html">Login</a>
+                    <a href="#" id="link-login">Login</a>
                 </p>
             </form>
 
         </section>
     </main>
     <!-- <script src="../js/consulta-api.js" type="module"></script> -->
+    <script src="../js/user/create-user.js" type="module"></script>
+    <script src="../js/user/toggle-password.js" type="module"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>

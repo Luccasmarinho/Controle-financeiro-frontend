@@ -1,3 +1,5 @@
+import notificacaoToastify from "./user/notification.js"
+
 async function cadastrarUsuario(nome, email, senha) {
     try {
         const conexao = await fetch("http://localhost:3000/usuarios", {
@@ -13,14 +15,17 @@ async function cadastrarUsuario(nome, email, senha) {
         })
 
         if (!conexao.ok) {
-            throw new Error("Não foi possível cadastrar o novo usuário.")
+            const errorData = await conexao.json()
+            throw new Error(errorData.Mensagem)
+            // || "Não foi possível cadastrar o novo usuário."
         }
 
+        const statusCode = conexao.status
         const conexaoConvertida = await conexao.json()
 
-        return conexaoConvertida
+        return { conexaoConvertida, statusCode }
     } catch (error) {
-        return { erro: error.message };
+        return notificacaoToastify(error.message)
     }
 }
 
@@ -169,3 +174,7 @@ async function totalTransacoes(id) {
         return { erro: error.message };
     }
 }
+
+const api = { cadastrarUsuario }
+
+export default api
