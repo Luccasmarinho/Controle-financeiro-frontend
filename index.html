@@ -9,9 +9,18 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./src/css/login-form/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
+
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">
+            <div class="loader"></div>
+            <p>Carregando...</p>
+        </div>
+    </div>
+    
     <main class="content">
 
         <section class="content__container-form">
@@ -25,11 +34,11 @@
             <form action="#" class="formulario">
 
                 <div class="formulario__input-area">
-                    <input type="email" class="input-area__input" placeholder="Email" required>
+                    <input type="email" class="input-area__input" placeholder="Email">
                 </div>
 
                 <div class="formulario__input-area">
-                    <input type="password" class="input-area__input" placeholder="Senha" required id="input-pass">
+                    <input type="password" class="input-area__input" placeholder="Senha" id="input-pass">
                     <i class="fa-solid fa-eye" id="icon-eye"></i>
                 </div>
 
@@ -40,8 +49,9 @@
                 </div>
 
                 <p class="formulario__cadastre-se">
-                    Ainda não tem uma conta? 
-                    <a href="#" id="link-cadastrar">Cadastre-se</a></p>
+                    Ainda não tem uma conta?
+                    <a href="#" id="link-cadastrar">Cadastre-se</a>
+                </p>
             </form>
 
         </section>
@@ -49,6 +59,7 @@
     <!-- <script src="../js/consulta-api.js" type="module"></script> -->
     <script src="./src/js/user/login.js" type="module"></script>
     <script src="./src/js/user/toggle-password.js" type="module"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>

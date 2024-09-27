@@ -15,18 +15,13 @@ document.getElementById("link-login").addEventListener("click", redir);
 async function cadastroDeUsuario(evento) {
     evento.preventDefault()
     if (inputSenha[0].value !== inputSenha[1].value) {
-        inputSenha[0].style.border = "2px solid red"
-        inputSenha[1].style.border = "2px solid red"
         return notificacaoToastify("As senhas não coincidem.")
     } else {
-        inputSenha[0].style.border = "2px solid #3333336b"
-        inputSenha[1].style.border = "2px solid #3333336b"
+        const buscaApi = await api.cadastrarUsuario(inputNome.value, inputEmail.value, inputSenha[0].value)
 
-        const result = await api.cadastrarUsuario(inputNome.value, inputEmail.value, inputSenha[0].value)
-
-        if (!result) {
+        if (!buscaApi) {
             return
-        } else if (result.statusCode == 201) {
+        } else if (buscaApi.statusCode == 201) {
             notificacaoToastify("Usuário cadastrado com sucesso.", "#00b09b, #96c93d")
         }
     }

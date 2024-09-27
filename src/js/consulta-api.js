@@ -17,7 +17,6 @@ async function cadastrarUsuario(nome, email, senha) {
         if (!conexao.ok) {
             const errorData = await conexao.json()
             throw new Error(errorData.Mensagem)
-            // || "Não foi possível cadastrar o novo usuário."
         }
 
         const statusCode = conexao.status
@@ -29,7 +28,7 @@ async function cadastrarUsuario(nome, email, senha) {
     }
 }
 
-async function login() {
+async function login(email, senha) {
     try {
         const conexao = await fetch("http://localhost:3000/login", {
             method: "POST",
@@ -43,14 +42,17 @@ async function login() {
         })
 
         if (!conexao.ok) {
-            throw new Error("Não foi possível efetuar o login.")
+            const errorData = await conexao.json()
+            throw new Error(errorData.Mensagem)
+            // throw new Error("Não foi possível efetuar o login.")
         }
 
+        const statusCode = conexao.status
         const conexaoConvertida = await conexao.json()
 
-        return conexaoConvertida
+        return { conexaoConvertida, statusCode }
     } catch (error) {
-        return { erro: error.message };
+        return notificacaoToastify(error.message)
     }
 }
 
@@ -175,6 +177,6 @@ async function totalTransacoes(id) {
     }
 }
 
-const api = { cadastrarUsuario }
+const api = { cadastrarUsuario, login }
 
 export default api
