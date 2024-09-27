@@ -3,8 +3,15 @@ import api from "../consulta-api.js";
 const formularioLogin = document.querySelector(".formulario");
 const inputEmail = document.querySelector("[type=email]");
 const inputSenha = document.querySelector("[type=password]");
+const body = document.querySelector("body")
 
 const modal = document.getElementById('loadingModal');
+
+
+if (localStorage.getItem("token")) {
+    body.style.display = "none"
+    window.location.href = "./src/pages/home.html"
+}
 
 function redir() {
     window.location.href = "./src/pages/create-user.html"
@@ -33,7 +40,3 @@ formularioLogin.addEventListener("submit", async (event) => {
         // }, 1500)
     }
 })
-
-if(localStorage.getItem("token")) {
-    window.location.href = "./src/pages/home.html"
-}
