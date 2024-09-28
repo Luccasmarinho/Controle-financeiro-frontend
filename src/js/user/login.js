@@ -5,6 +5,8 @@ const inputEmail = document.querySelector("[type=email]");
 const inputSenha = document.querySelector("[type=password]");
 const modal = document.getElementById('loadingModal');
 
+// const idUser = []
+
 function redir() {
     window.location.href = "../pages/create-user.html"
 }
@@ -12,7 +14,10 @@ function redir() {
 document.getElementById("link-cadastrar").addEventListener("click", redir)
 
 function guardarToken(token) {
-    localStorage.setItem("token", JSON.stringify(token))
+    const objToken = {
+        token
+    }
+    localStorage.setItem("token", JSON.stringify(objToken))
 }
 
 formularioLogin.addEventListener("submit", async (event) => {
@@ -24,7 +29,10 @@ formularioLogin.addEventListener("submit", async (event) => {
     } else if (buscaApi.statusCode == 200) {
         const { token } = buscaApi.conexaoConvertida
         const { id } = buscaApi.conexaoConvertida.user
+
         guardarToken(token)
+        // idUser.push(id)
+
         modal.style.display = "flex"
 
         setTimeout(() => {

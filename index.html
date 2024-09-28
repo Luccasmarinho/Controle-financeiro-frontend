@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sejam Bem-vindos</title>
     <link rel="stylesheet" href="src/css/home/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
+
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">
+            <div class="loader"></div>
+            <p>Carregando...</p>
+        </div>
+    </div>
+    
     <div class="card">
         <!-- <svg class="App-logo" viewBox="0 0 841.9 595.3" xmlns="http://www.w3.org/2000/svg">
                 <g fill="#61DAFB">
@@ -21,11 +30,13 @@
             </svg> -->
         <img src="./src/img/icon-dolar.png" alt="Ícone do dinheiro" class="App-logo">
         <div class="header">Sejam bem-vindos!!!</div>
-        <p class="text">Nesse projeto você poderá organizar suas finanças de modo simples e prático,
+        <p class="text">Nesse projeto você terá um controle de suas finanças de modo simples e prático,
             onde adicionará suas entradas e saídas financeiras e saberá se está no
             déficit ou não. Vamos nessa?</p>
         <button class="App-button"><a href="#" id="link-entrar">Entrar</a></button>
     </div>
+    <script src="src/js/user/validate-token.js" type="module"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>

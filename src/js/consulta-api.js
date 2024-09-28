@@ -177,6 +177,32 @@ async function totalTransacoes(id) {
     }
 }
 
-const api = { cadastrarUsuario, login }
+async function dadosUsuario() {
+
+    try {
+        const token = JSON.parse(localStorage.getItem("token")).token
+        const conexao = await fetch("http://localhost:3000/dados/usuario", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        if (!conexao.ok) {
+            const errorData = await conexao.json()
+            throw new Error(errorData.Mensagem)
+        }
+
+        const conexaoConvertida = await conexao.json()
+
+        return { conexaoConvertida }
+    } catch (error) {
+        localStorage.removeItem("token")
+        return { erro: error.message }
+    }
+}
+
+const api = { cadastrarUsuario, login, dadosUsuario }
 
 export default api
