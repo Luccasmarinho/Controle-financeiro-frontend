@@ -7,7 +7,7 @@ const inputEmail = document.querySelector("[type=email]");
 const inputSenha = document.querySelectorAll("[type=password]");
 
 function redir() {
-    window.location.href = "../../../index.html"
+    window.location.href = "../pages/login.html"
 }
 
 document.getElementById("link-login").addEventListener("click", redir);
@@ -26,7 +26,7 @@ async function cadastroDeUsuario(evento) {
         }
     }
     setTimeout(() => {
-        window.location.href = "../../../index.html"
+        window.location.href = "../pages/login.html"
     }, 2000)
 
 }

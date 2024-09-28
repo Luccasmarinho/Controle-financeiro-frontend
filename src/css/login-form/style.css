@@ -13,8 +13,8 @@
 }
 
 :root {
-    --color01: #1E1CA8;
-    --hoverbtn: #0d0c51;
+    --color01: #47a4bd;
+    --hoverbtn: #255e6e;
 }
 
 body {
@@ -22,5 +22,5 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to bottom, var(--color01), var(--hoverbtn));
+    background: linear-gradient(to bottom, #1e2127, #3c414d);
 }

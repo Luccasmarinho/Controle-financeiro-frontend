@@ -3,18 +3,10 @@ import api from "../consulta-api.js";
 const formularioLogin = document.querySelector(".formulario");
 const inputEmail = document.querySelector("[type=email]");
 const inputSenha = document.querySelector("[type=password]");
-const body = document.querySelector("body")
-
 const modal = document.getElementById('loadingModal');
 
-
-if (localStorage.getItem("token")) {
-    body.style.display = "none"
-    window.location.href = "./src/pages/home.html"
-}
-
 function redir() {
-    window.location.href = "./src/pages/create-user.html"
+    window.location.href = "../pages/create-user.html"
 }
 
 document.getElementById("link-cadastrar").addEventListener("click", redir)
@@ -35,8 +27,8 @@ formularioLogin.addEventListener("submit", async (event) => {
         guardarToken(token)
         modal.style.display = "flex"
 
-        // setTimeout(() => {
-        //     window.location.href = "./src/pages/home.html"
-        // }, 1500)
+        setTimeout(() => {
+            window.location.href = "../pages/dashboard.html"
+        }, 1500)
     }
 })
