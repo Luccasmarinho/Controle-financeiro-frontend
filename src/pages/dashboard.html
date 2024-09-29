@@ -13,16 +13,23 @@
 
 <body>
 
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">
+            <div class="loader"></div>
+            <p id="loader__text">Carregando...</p>
+        </div>
+    </div>
+
     <header class="cabecalho">
 
         <h2 class="cabecalho__titulo">Controle financeiro</h2>
         <div class="cabecalho__user-name">
             <div class="user-name__circle">
-                <span class="circle__letras-iniciais">L</span>
+                <span class="circle__letras-iniciais"></span>
             </div>
             <div class="user-name__name-icon">
                 <div class="name-icon">
-                    <h4 class="name-icon__name">Lindalva</h4>
+                    <h4 class="name-icon__name"></h4>
                     <i class="fa-solid fa-chevron-left" id="name-icon__icon-left"></i>
                 </div>
 
@@ -33,7 +40,7 @@
                             Editar perfil
                         </a>
                         <!-- <a href="#">Configurações</a> -->
-                        <a href="#">
+                        <a href="#" id="link-sair">
                             <i class="fa-solid fa-person-walking-arrow-right"></i>
                             Sair
                         </a>
@@ -139,6 +146,7 @@
     </main>
     <!-- <script src="../js/consulta-api.js" type="module"></script> -->
     <script src="../js/user/dropdown-user-dashboard.js" type="module"></script>
+    <script src="../js/user/loggout.js" type="module"></script>
 </body>
 
 </html>
