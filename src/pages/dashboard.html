@@ -14,7 +14,34 @@
 <body>
 
     <header class="cabecalho">
+
         <h2 class="cabecalho__titulo">Controle financeiro</h2>
+        <div class="cabecalho__user-name">
+            <div class="user-name__circle">
+                <span class="circle__letras-iniciais">L</span>
+            </div>
+            <div class="user-name__name-icon">
+                <div class="name-icon">
+                    <h4 class="name-icon__name">Lindalva</h4>
+                    <i class="fa-solid fa-chevron-left" id="name-icon__icon-left"></i>
+                </div>
+
+                <div class="user-menu">
+                    <div id="dropdown-menu" class="dropdown">
+                        <a href="#">
+                            <i class="fa-solid fa-user-pen"></i>
+                            Editar perfil
+                        </a>
+                        <!-- <a href="#">Configurações</a> -->
+                        <a href="#">
+                            <i class="fa-solid fa-person-walking-arrow-right"></i>
+                            Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </header>
 
     <main class="content">
@@ -111,6 +138,7 @@
         </section>
     </main>
     <!-- <script src="../js/consulta-api.js" type="module"></script> -->
+    <script src="../js/user/dropdown-user-dashboard.js" type="module"></script>
 </body>
 
 </html>
