@@ -57,8 +57,9 @@ async function login(email, senha) {
 }
 
 async function cadastrarTransacao(categoria, valor, tipo, usuario_id) {
-    // const token = aqui vai pegar o token do localstorage
     try {
+        const token = JSON.parse(localStorage.getItem("token")).token
+
         const conexao = await fetch("http://localhost:3000/transacoes", {
             method: "POST",
             headers: {
@@ -74,14 +75,15 @@ async function cadastrarTransacao(categoria, valor, tipo, usuario_id) {
         })
 
         if (!conexao.ok) {
-            throw new Error("Não foi possível cadastrar essa transação.")
+            const errorData = await conexao.json()
+            throw new Error(errorData.Mensagem)
         }
 
         const conexaoConvertida = await conexao.json()
 
         return conexaoConvertida
     } catch (error) {
-        return { erro: error.message };
+        return notificacaoToastify(error.message);
     }
 }
 
@@ -199,6 +201,7 @@ async function dadosUsuario() {
         return { conexaoConvertida }
     } catch (error) {
         localStorage.removeItem("token")
+        setTimeout(() => window.location.href = "../pages/login.html", 1500)
         return { erro: error.message }
     }
 }
