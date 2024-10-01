@@ -22,13 +22,21 @@
     font-weight: semibold;
 }
 
-input[type=number]::-webkit-inner-spin-button { 
-    -webkit-appearance: none;
-    
+.formulario__input-area-radio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
-input[type=number] { 
-   -moz-appearance: textfield;
-   appearance: textfield;
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 
 }
 

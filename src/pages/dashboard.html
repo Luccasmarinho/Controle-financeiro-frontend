@@ -9,6 +9,7 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/dashborad/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -99,7 +100,7 @@
         </section>
 
         <section class="content__formulario">
-            <form action="#" class="formulario">
+            <form action="#" class="formulario" id="formulario-transacao">
 
                 <div class="formulario__input-area">
                     <label for="input-descricao">Categoria</label>
@@ -108,7 +109,7 @@
 
                 <div class="formulario__input-area">
                     <label for="input-valor">Valor</label>
-                    <input type="number" class="formulario__input" id="input-valor">
+                    <input type="number" class="formulario__input" id="input-valor" step="0.01">
                 </div>
 
                 <div class="formulario__input-area-radio">
@@ -138,8 +139,8 @@
 
                 <div class="tabela__linha"></div>
 
-                <tbody>
-                    <tr class="tabela__corpo">
+                <tbody class="tbody-tabela">
+                    <!-- <tr class="tabela__corpo">
                         <td>Salário</td>
                         <td>1500</td>
                         <td> <i class="fa-solid fa-arrow-down" id="icon-saida"></i> </td>
@@ -148,7 +149,7 @@
                                 <i class="fa-solid fa-trash" id="icone-trash"></i>
                             </button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
 
             </table>
@@ -159,6 +160,8 @@
     <script src="../js/user/dropdown-user-dashboard.js" type="module"></script>
     <script src="../js/user/loggout.js" type="module"></script>
     <script src="../js/user/token-expired.js" type="module"></script>
+    <script src="../js/transactions/create-transaction.js" type="module"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>
