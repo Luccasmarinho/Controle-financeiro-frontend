@@ -21,7 +21,7 @@
 
 }
 
-button {
+#loginAgain {
     padding: 10px 20px;
     background-color: var(--color01);
     border: none;
@@ -32,6 +32,6 @@ button {
     transition: .4s;
 }
 
-button:hover {
+#loginAgain:hover {
     background-color: var(--hoverbtn);
 }
