@@ -1,5 +1,3 @@
-import api from "../consulta-api.js";
-
 const btnEntrar = document.querySelector("#link-entrar");
 const modal = document.getElementById('loadingModal');
 
@@ -9,23 +7,27 @@ function carregamentoERedirecionamento(caminho) {
 }
 
 async function tokenValido() {
+    const token = !localStorage.getItem("token")
+        ? carregamentoERedirecionamento("src/pages/login.html")
+        : carregamentoERedirecionamento("src/pages/dashboard.html")
 
-    const buscaApi = await api.dadosUsuario()
-    if (!localStorage.getItem("token")) {
-        carregamentoERedirecionamento("src/pages/login.html")
-    }
+    return token
 
-    if (localStorage.getItem("token")) {
-        // const { dataExpiracaoDoToken } = buscaApi.conexaoConvertida
-        // const dataAtual = new Date().toLocaleString()
+    // if (!localStorage.getItem("token")) {
+    //     carregamentoERedirecionamento("src/pages/login.html")
+    // }
 
-        // if (dataAtual > dataExpiracaoDoToken) {
-        //     localStorage.removeItem("token")
-        //     carregamentoERedirecionamento("src/pages/login.html")
-        // }
+    // if (localStorage.getItem("token")) {
+    //     // const { dataExpiracaoDoToken } = buscaApi.conexaoConvertida
+    //     // const dataAtual = new Date().toLocaleString()
 
-        carregamentoERedirecionamento("src/pages/dashboard.html")
-    }
+    //     // if (dataAtual > dataExpiracaoDoToken) {
+    //     //     localStorage.removeItem("token")
+    //     //     carregamentoERedirecionamento("src/pages/login.html")
+    //     // }
+
+    //     carregamentoERedirecionamento("src/pages/dashboard.html")
+    // }
 }
 
 btnEntrar.addEventListener("click", tokenValido)

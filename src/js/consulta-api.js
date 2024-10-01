@@ -193,15 +193,21 @@ async function dadosUsuario() {
 
         if (!conexao.ok) {
             const errorData = await conexao.json()
-            throw new Error(errorData.Mensagem)
+            throw new Error(JSON.stringify(errorData))
         }
 
         const conexaoConvertida = await conexao.json()
 
         return { conexaoConvertida }
     } catch (error) {
-        localStorage.removeItem("token")
-        setTimeout(() => window.location.href = "../pages/login.html", 1500)
+        const modalSessaoExpirada = document.querySelector(".modal-token")
+        if (JSON.parse(error.message).erro == "jwt expired") {
+            modalSessaoExpirada.style.display = "block"
+            localStorage.removeItem("token")
+            // setTimeout(() => window.location.href = "../pages/login.html", 1500)
+            return
+        }
+
         return { erro: error.message }
     }
 }

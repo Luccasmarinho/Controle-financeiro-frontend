@@ -13,6 +13,16 @@
 
 <body>
 
+    <!-- Modal de Token Expirado -->
+    <div id="tokenExpiredModal" class="modal-token">
+        <div class="modal-content-token">
+            <h2>Sua sessão expirou</h2>
+            <p>Por favor, faça login novamente para continuar usando o app.</p>
+            <button id="loginAgain">Fazer Login</button>
+        </div>
+    </div>
+
+    <!--modal carregamento-->
     <div id="loadingModal" class="modal">
         <div class="modal-content">
             <div class="loader"></div>
@@ -32,7 +42,7 @@
                     <h4 class="name-icon__name"></h4>
                     <i class="fa-solid fa-chevron-left" id="name-icon__icon-left"></i>
                 </div>
-
+                <!--dropdown-->
                 <div class="user-menu">
                     <div id="dropdown-menu" class="dropdown">
                         <a href="#">
@@ -46,6 +56,7 @@
                         </a>
                     </div>
                 </div>
+                <!---->
             </div>
         </div>
 
@@ -147,6 +158,7 @@
     <!-- <script src="../js/consulta-api.js" type="module"></script> -->
     <script src="../js/user/dropdown-user-dashboard.js" type="module"></script>
     <script src="../js/user/loggout.js" type="module"></script>
+    <script src="../js/user/token-expired.js" type="module"></script>
 </body>
 
 </html>
