@@ -110,7 +110,6 @@ async function listaDeTransacoes(id) {
 
         return { conexaoConvertida, statusCode }
     } catch (error) {
-        return notificacaoToastify(error.message);
         return { erro: error.message };
     }
 }
@@ -162,8 +161,8 @@ async function deletarTransacao(id) {
 }
 
 async function totalTransacoes(id) {
-    // const token = aqui vai pegar o token do localstorage
     try {
+        const token = JSON.parse(localStorage.getItem("token")).token
         const conexao = await fetch(`http://localhost:3000/transacoes/total?usuario_id=${id}`, {
             method: "GET",
             headers: {
@@ -173,12 +172,14 @@ async function totalTransacoes(id) {
         })
 
         if (!conexao.ok) {
-            throw new Error("Não foi possível listar o total de transações.")
+            const errorData = await conexao.json()
+            throw new Error(errorData.Mensagem)
         }
 
+        const statusCode = conexao.status
         const conexaoConvertida = await conexao.json()
 
-        return conexaoConvertida
+        return { conexaoConvertida, statusCode }
     } catch (error) {
         return { erro: error.message };
     }
@@ -217,6 +218,6 @@ async function dadosUsuario() {
     }
 }
 
-const api = { cadastrarUsuario, login, dadosUsuario, cadastrarTransacao, listaDeTransacoes }
+const api = { cadastrarUsuario, login, dadosUsuario, cadastrarTransacao, listaDeTransacoes, totalTransacoes }
 
 export default api

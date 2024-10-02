@@ -59,6 +59,8 @@ async function criarTransacao(evento) {
         return
     } else if (buscaCadastrarTransacao.statusCode == 200) {
         criarElementos(inputCategoria.value, inputValor.value, `icon-${valorInputTipo}`)
+        inputCategoria.value = ""
+        inputValor.value = ""
     }
 }
 
@@ -70,5 +72,28 @@ async function carregarTransacoes() {
     })
 }
 carregarTransacoes()
+
+
+// async function carregarValor() {
+//     const buscaTotalTransacoes = await api.totalTransacoes(id)
+//     console.log(buscaTotalTransacoes);
+//     document.querySelector(".value__saida").textContent = `R$ ${buscaTotalTransacoes.conexaoConvertida.total_saida}`
+//     // return buscaTotalTransacoes
+// }
+// carregarValor()
+
+// inputValor.addEventListener("input", async () => {
+//     const buscaTotalTransacoes = await api.totalTransacoes(id)
+//     const n = Number(inputValor.value)
+//     document.querySelector(".value__saida").textContent = `R$ ${Number(buscaTotalTransacoes.conexaoConvertida.total_saida) + n}`
+// })
+
+// inputValor.addEventListener("input", async () => {
+//     const buscaTotalTransacoes = await api.totalTransacoes(id)
+//     const n = Number(inputValor.value)
+//     document.querySelector(".value__entrada").textContent = Number(buscaTotalTransacoes.conexaoConvertida.total_entrada) + n
+// })
+
+
 
 formTransacao.addEventListener("submit", (event) => criarTransacao(event))
