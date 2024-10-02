@@ -58,7 +58,7 @@ async function criarTransacao(evento) {
     if (!buscaCadastrarTransacao) {
         return
     } else if (buscaCadastrarTransacao.statusCode == 200) {
-        criarElementos(inputCategoria.value, inputValor.value, `icon-${valorInputTipo}`)
+        criarElementos(inputCategoria.value, Number(inputValor.value).toFixed(2), `icon-${valorInputTipo}`)
         inputCategoria.value = ""
         inputValor.value = ""
     }
@@ -68,7 +68,7 @@ async function carregarTransacoes() {
     const buscaTransacoes = await api.listaDeTransacoes(id)
     const { conexaoConvertida } = buscaTransacoes
     conexaoConvertida.forEach((dados) => {
-        criarElementos(dados.categoria, dados.valor, `icon-${dados.tipo}`)
+        criarElementos(dados.categoria, Number(dados.valor).toFixed(2), `icon-${dados.tipo}`)
     })
 }
 carregarTransacoes()
