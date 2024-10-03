@@ -1,5 +1,4 @@
 import api from "../consulta-api.js";
-import notificacaoToastify from "../user/notification.js";
 
 const inputCategoria = document.querySelector("#input-descricao");
 const inputValor = document.querySelector("#input-valor");
@@ -49,7 +48,6 @@ function criarElementos(categoria, valor, tipo = "icon-entrada") {
     }
 }
 
-
 async function criarTransacao(evento) {
     evento.preventDefault();
     const valorInputTipo = inputTipo[0].checked ? inputTipo[0].value : inputTipo[1].value
@@ -73,27 +71,4 @@ async function carregarTransacoes() {
 }
 carregarTransacoes()
 
-
-// async function carregarValor() {
-//     const buscaTotalTransacoes = await api.totalTransacoes(id)
-//     console.log(buscaTotalTransacoes);
-//     document.querySelector(".value__saida").textContent = `R$ ${buscaTotalTransacoes.conexaoConvertida.total_saida}`
-//     // return buscaTotalTransacoes
-// }
-// carregarValor()
-
-// inputValor.addEventListener("input", async () => {
-//     const buscaTotalTransacoes = await api.totalTransacoes(id)
-//     const n = Number(inputValor.value)
-//     document.querySelector(".value__saida").textContent = `R$ ${Number(buscaTotalTransacoes.conexaoConvertida.total_saida) + n}`
-// })
-
-// inputValor.addEventListener("input", async () => {
-//     const buscaTotalTransacoes = await api.totalTransacoes(id)
-//     const n = Number(inputValor.value)
-//     document.querySelector(".value__entrada").textContent = Number(buscaTotalTransacoes.conexaoConvertida.total_entrada) + n
-// })
-
-
-
-formTransacao.addEventListener("submit", (event) => criarTransacao(event))
+formTransacao.addEventListener("submit", (event) => criarTransacao(event));
