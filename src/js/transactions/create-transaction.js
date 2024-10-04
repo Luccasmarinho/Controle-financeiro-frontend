@@ -63,9 +63,9 @@ async function criarTransacao(evento) {
 }
 
 async function carregarTransacoes() {
-    const buscaTransacoes = await api.listaDeTransacoes(id)
-    const { conexaoConvertida } = buscaTransacoes
-    conexaoConvertida.forEach((dados) => {
+    const buscaTransacoes = await api.listaDeTransacoes(id, 1, 7)
+    const { listarTransacao, currentPage: paginaAtual, totalPages: registrosPorPagina } = buscaTransacoes.conexaoConvertida
+    listarTransacao.forEach((dados) => {
         criarElementos(dados.categoria, Number(dados.valor).toFixed(2), `icon-${dados.tipo}`)
     })
 }

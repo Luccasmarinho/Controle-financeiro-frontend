@@ -76,7 +76,7 @@ async function cadastrarTransacao(categoria, valor, tipo, usuario_id) {
 
         if (!conexao.ok) {
             const errorData = await conexao.json()
-            throw new Error(errorData.Mensagem)
+            throw new Error(JSON.stringify(errorData))
         }
 
         const statusCode = conexao.status
@@ -85,14 +85,23 @@ async function cadastrarTransacao(categoria, valor, tipo, usuario_id) {
         return { conexaoConvertida, statusCode }
     } catch (error) {
         console.log(error);
-        return notificacaoToastify(error.message);
+        const modalSessaoExpirada = document.querySelector(".modal-token")
+        if (JSON.parse(error.message).erro == "jwt expired") {
+            modalSessaoExpirada.style.display = "block"
+            localStorage.removeItem("token")
+            // setTimeout(() => window.location.href = "../pages/login.html", 1500)
+            return
+        }
+
+        return { erro: error.message }
     }
 }
 
-async function listaDeTransacoes(id) {
+async function listaDeTransacoes(id, page, limit) {
+    //http://localhost:3000/transacoes?usuario_id=62&page=1&limit=5
     try {
         const token = JSON.parse(localStorage.getItem("token")).token
-        const conexao = await fetch(`http://localhost:3000/transacoes?usuario_id=${id}`, {
+        const conexao = await fetch(`http://localhost:3000/transacoes?usuario_id=${id}&page=${page}&limit=${limit}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json",
@@ -206,13 +215,13 @@ async function dadosUsuario() {
 
         return { conexaoConvertida }
     } catch (error) {
-        const modalSessaoExpirada = document.querySelector(".modal-token")
-        if (JSON.parse(error.message).erro == "jwt expired") {
-            modalSessaoExpirada.style.display = "block"
-            localStorage.removeItem("token")
-            // setTimeout(() => window.location.href = "../pages/login.html", 1500)
-            return
-        }
+        // const modalSessaoExpirada = document.querySelector(".modal-token")
+        // if (JSON.parse(error.message).erro == "jwt expired") {
+        //     modalSessaoExpirada.style.display = "block"
+        //     localStorage.removeItem("token")
+        //     // setTimeout(() => window.location.href = "../pages/login.html", 1500)
+        //     return
+        // }
 
         return { erro: error.message }
     }
