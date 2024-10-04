@@ -4,6 +4,8 @@ const inputCategoria = document.querySelector("#input-descricao");
 const inputValor = document.querySelector("#input-valor");
 const inputTipo = document.querySelectorAll('input[name="entrada-saida"]');
 const formTransacao = document.querySelector("#formulario-transacao");
+const btnPrev = document.getElementById("prev")
+const btnNext = document.getElementById("next")
 
 const buscaDadosUsuario = await api.dadosUsuario()
 const { id } = buscaDadosUsuario.conexaoConvertida[1]
@@ -70,5 +72,40 @@ async function carregarTransacoes() {
     })
 }
 carregarTransacoes()
+
+let paginaAtual = 1
+console.log(paginaAtual);
+
+btnNext.addEventListener("click", async () => {
+    paginaAtual++
+    const tr = document.querySelectorAll(".tabela__corpo")
+
+    const buscaTransacoes = await api.listaDeTransacoes(id, paginaAtual, 7)
+    tr.forEach((e) => e.remove())
+
+    const { listarTransacao, currentPage, totalPages: registrosPorPagina } = buscaTransacoes.conexaoConvertida
+    listarTransacao.forEach((dados) => {
+        criarElementos(dados.categoria, Number(dados.valor).toFixed(2), `icon-${dados.tipo}`)
+    })
+
+
+    // console.log(paginaAtual);
+})
+
+btnPrev.addEventListener("click", async () => {
+    paginaAtual--
+    const tr = document.querySelectorAll(".tabela__corpo")
+
+    const buscaTransacoes = await api.listaDeTransacoes(id, paginaAtual, 7)
+    tr.forEach((e) => e.remove())
+
+    const { listarTransacao, currentPage, totalPages: registrosPorPagina } = buscaTransacoes.conexaoConvertida
+    listarTransacao.forEach((dados) => {
+        criarElementos(dados.categoria, Number(dados.valor).toFixed(2), `icon-${dados.tipo}`)
+    })
+
+
+    // console.log(paginaAtual);
+})
 
 formTransacao.addEventListener("submit", (event) => criarTransacao(event));
