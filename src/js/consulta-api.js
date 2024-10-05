@@ -97,7 +97,7 @@ async function cadastrarTransacao(categoria, valor, tipo, usuario_id) {
     }
 }
 
-async function listaDeTransacoes(id, page, limit) {
+async function listaDeTransacoes(id, page = 1, limit = 7) {
     //http://localhost:3000/transacoes?usuario_id=62&page=1&limit=5
     try {
         const token = JSON.parse(localStorage.getItem("token")).token
