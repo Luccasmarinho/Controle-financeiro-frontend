@@ -97,11 +97,13 @@ async function cadastrarTransacao(categoria, valor, tipo, usuario_id) {
     }
 }
 
-async function listaDeTransacoes(id, page = 1, limit = 7) {
-    //http://localhost:3000/transacoes?usuario_id=62&page=1&limit=5
+async function listaDeTransacoes(id, page, limit) {
+    const url = !page && !limit
+        ? `http://localhost:3000/transacoes?usuario_id=${id}`
+        : `http://localhost:3000/transacoes?usuario_id=${id}&page=${page}&limit=${limit}`
     try {
         const token = JSON.parse(localStorage.getItem("token")).token
-        const conexao = await fetch(`http://localhost:3000/transacoes?usuario_id=${id}&page=${page}&limit=${limit}`, {
+        const conexao = await fetch(url, {
             method: "GET",
             headers: {
                 "Content-type": "application/json",
@@ -147,8 +149,8 @@ async function deletarUsuario(id) {
 }
 
 async function deletarTransacao(id) {
-    // const token = aqui vai pegar o token do localstorage
     try {
+        const token = JSON.parse(localStorage.getItem("token")).token
         const conexao = await fetch(`http://localhost:3000/transacoes/${id}`, {
             method: "DELETE",
             headers: {
@@ -158,12 +160,14 @@ async function deletarTransacao(id) {
         })
 
         if (!conexao.ok) {
-            throw new Error("Não foi possível deletar esta transação.")
+            const errorData = await conexao.json()
+            throw new Error(errorData.Mensagem)
         }
 
+        const statusCode = conexao.status
         const conexaoConvertida = await conexao.json()
 
-        return conexaoConvertida
+        return { conexaoConvertida, statusCode }
     } catch (error) {
         return { erro: error.message };
     }
@@ -227,6 +231,14 @@ async function dadosUsuario() {
     }
 }
 
-const api = { cadastrarUsuario, login, dadosUsuario, cadastrarTransacao, listaDeTransacoes, totalTransacoes }
+const api = {
+    cadastrarUsuario,
+    login,
+    dadosUsuario,
+    cadastrarTransacao,
+    listaDeTransacoes,
+    totalTransacoes,
+    deletarTransacao
+}
 
 export default api

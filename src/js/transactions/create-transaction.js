@@ -10,6 +10,16 @@ const btnNext = document.getElementById("next")
 const buscaDadosUsuario = await api.dadosUsuario()
 const { id } = buscaDadosUsuario.conexaoConvertida[1]
 
+let pagina = 1
+let registrosPaginas = 7
+
+const buscaTransacoes = await api.listaDeTransacoes(id, pagina, registrosPaginas)
+const {
+    listarTransacao,
+    currentPage: paginaAtual,
+    totalPages: registrosPorPagina
+} = buscaTransacoes.conexaoConvertida
+
 
 function criarElementos(categoria, valor, tipo = "icon-entrada") {
     const tbody = document.querySelector(".tbody-tabela")
@@ -50,22 +60,8 @@ function criarElementos(categoria, valor, tipo = "icon-entrada") {
     }
 }
 
-async function criarTransacao(evento) {
-    evento.preventDefault();
-    const valorInputTipo = inputTipo[0].checked ? inputTipo[0].value : inputTipo[1].value
-
-    const buscaCadastrarTransacao = await api.cadastrarTransacao(inputCategoria.value, inputValor.value, valorInputTipo, id)
-    if (!buscaCadastrarTransacao) {
-        return
-    } else if (buscaCadastrarTransacao.statusCode == 200) {
-        criarElementos(inputCategoria.value, Number(inputValor.value).toFixed(2), `icon-${valorInputTipo}`)
-        inputCategoria.value = ""
-        inputValor.value = ""
-    }
-}
-
 async function carregarTransacoes() {
-    const buscaTransacoes = await api.listaDeTransacoes(id, 1, 7)
+    const buscaTransacoes = await api.listaDeTransacoes(id, pagina, registrosPaginas)
     const { listarTransacao, currentPage: paginaAtual, totalPages: registrosPorPagina } = buscaTransacoes.conexaoConvertida
     listarTransacao.forEach((dados) => {
         criarElementos(dados.categoria, Number(dados.valor).toFixed(2), `icon-${dados.tipo}`)
@@ -73,30 +69,66 @@ async function carregarTransacoes() {
 }
 carregarTransacoes()
 
-let paginaAtual = 1
-console.log(paginaAtual);
+async function criarTransacao(evento) {
+    evento.preventDefault();
+
+    const buscaTransacoes = await api.listaDeTransacoes(id, pagina, registrosPaginas)
+    const {
+        listarTransacao,
+        currentPage: paginaAtual,
+        totalPages: registrosPorPagina
+    } = buscaTransacoes.conexaoConvertida
+
+    const valorInputTipo = inputTipo[0].checked ? inputTipo[0].value : inputTipo[1].value
+
+    const buscaCadastrarTransacao = await api.cadastrarTransacao(inputCategoria.value, inputValor.value, valorInputTipo, id)
+    if (!buscaCadastrarTransacao) {
+        return
+    } else if (buscaCadastrarTransacao.statusCode == 200 && listarTransacao.length < 7) {
+        criarElementos(inputCategoria.value, Number(inputValor.value).toFixed(2), `icon-${valorInputTipo}`)
+        inputCategoria.value = ""
+        inputValor.value = ""
+    }
+}
+
+// async function prevDisabled() {
+//     const buscaTransacoes = await api.listaDeTransacoes(id, pagina, registrosPaginas)
+//     const {
+//         listarTransacao,
+//         currentPage: paginaAtual,
+//         totalPages: registrosPorPagina
+//     } = buscaTransacoes.conexaoConvertida
+
+//     if (pagina == 1) {
+//         btnPrev.disabled = true
+//         btnPrev.style.backgroundColor = "#ffffff5e"
+//         btnPrev.style.color = "#47a3bd5d"
+//     } else {
+//         btnPrev.disabled = false
+//         btnPrev.style.color = "red"
+
+//     }
+// }
+// prevDisabled()
 
 btnNext.addEventListener("click", async () => {
-    paginaAtual++
+    pagina++
     const tr = document.querySelectorAll(".tabela__corpo")
 
-    const buscaTransacoes = await api.listaDeTransacoes(id, paginaAtual, 7)
+    const buscaTransacoes = await api.listaDeTransacoes(id, pagina, registrosPaginas)
     tr.forEach((e) => e.remove())
 
     const { listarTransacao, currentPage, totalPages: registrosPorPagina } = buscaTransacoes.conexaoConvertida
     listarTransacao.forEach((dados) => {
         criarElementos(dados.categoria, Number(dados.valor).toFixed(2), `icon-${dados.tipo}`)
     })
-
-
-    // console.log(paginaAtual);
 })
 
 btnPrev.addEventListener("click", async () => {
-    paginaAtual--
+    pagina--
     const tr = document.querySelectorAll(".tabela__corpo")
 
-    const buscaTransacoes = await api.listaDeTransacoes(id, paginaAtual, 7)
+    const buscaTransacoes = await api.listaDeTransacoes(id, pagina, 7)
     tr.forEach((e) => e.remove())
 
     const { listarTransacao, currentPage, totalPages: registrosPorPagina } = buscaTransacoes.conexaoConvertida
@@ -104,8 +136,5 @@ btnPrev.addEventListener("click", async () => {
         criarElementos(dados.categoria, Number(dados.valor).toFixed(2), `icon-${dados.tipo}`)
     })
 
-
-    // console.log(paginaAtual);
 })
-
 formTransacao.addEventListener("submit", (event) => criarTransacao(event));

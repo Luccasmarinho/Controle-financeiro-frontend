@@ -15,17 +15,18 @@
     top: -15px;
 }
 
-.content__btn-paginacao li {
+.content__btn-paginacao button {
     cursor: pointer;
     padding: 0 5px;
     border-radius: 5px;
     font-size: 15px;
     color: var(--color01);
     transition: .4s;
-
+    border: none;
+    outline: none;
 }
 
-.content__btn-paginacao li:hover {
+.content__btn-paginacao button:hover {
     background-color: var(--color01);
     color: white;
 }
