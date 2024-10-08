@@ -1,4 +1,5 @@
 import api from "../consulta-api.js";
+import { carregarValor } from "./values-transaction.js";
 
 const inputCategoria = document.querySelector("#input-descricao");
 const inputValor = document.querySelector("#input-valor");
@@ -14,11 +15,11 @@ let pagina = 1
 let registrosPaginas = 7
 
 const buscaTransacoes = await api.listaDeTransacoes(id, pagina, registrosPaginas)
-const {
-    listarTransacao,
-    currentPage: paginaAtual,
-    totalPages: registrosPorPagina
-} = buscaTransacoes.conexaoConvertida
+// const {
+//     listarTransacao,
+//     currentPage: paginaAtual,
+//     totalPages: registrosPorPagina
+// } = buscaTransacoes.conexaoConvertida
 
 
 function criarElementos(categoria, valor, tipo = "icon-entrada") {
@@ -52,6 +53,15 @@ function criarElementos(categoria, valor, tipo = "icon-entrada") {
                 button.classList.add("corpo__btn-trash")
                 tr.appendChild(button)
                 button.appendChild(iconTrash)
+                button.addEventListener("click", async () => {
+                    const buscaTodasTransacoes = await api.listaDeTransacoes(id)
+                    const arrayTransacoes = buscaTodasTransacoes.conexaoConvertida.listarTransacao
+
+                    const { id: transacaoId } = arrayTransacoes.find((e) => e.categoria == tr.firstChild.textContent)
+                    await api.deletarTransacao(transacaoId)
+                    tr.remove()
+                    carregarValor()
+                })
                 break
             default:
                 break;

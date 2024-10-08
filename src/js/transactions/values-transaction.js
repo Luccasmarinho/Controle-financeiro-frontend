@@ -35,3 +35,5 @@ async function operacoesDeValores() {
 }
 
 btnAdicionar.addEventListener("click", operacoesDeValores);
+
+export { carregarValor }
