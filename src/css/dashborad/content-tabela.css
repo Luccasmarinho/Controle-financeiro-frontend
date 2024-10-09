@@ -3,6 +3,22 @@
     border: 1px solid #00000055;
     border-radius: 5px;
     padding: 10px;
+    overflow-y: auto;
+    max-height: 255px;
+}
+
+.content__tabela::-webkit-scrollbar {
+    width: 12px;
+}
+
+.content__tabela::-webkit-scrollbar-track {
+    background: white;
+}
+
+.content__tabela::-webkit-scrollbar-thumb {
+    background-color: var(--color01);
+    border-radius: 20px;
+    border: 3px solid white;
 }
 
 .tabela {
@@ -36,4 +52,3 @@
 .corpo__btn-trash:hover {
     color: red;
 }
-
