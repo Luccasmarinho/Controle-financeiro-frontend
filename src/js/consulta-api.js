@@ -1,4 +1,5 @@
 import notificacaoToastify from "./user/notification.js"
+import { validacaoForm } from "./user/validation-form.js"
 
 async function cadastrarUsuario(nome, email, senha) {
     try {
@@ -43,6 +44,7 @@ async function login(email, senha) {
 
         if (!conexao.ok) {
             const errorData = await conexao.json()
+            validacaoForm(errorData.Mensagem)
             throw new Error(errorData.Mensagem)
             // throw new Error("Não foi possível efetuar o login.")
         }
@@ -52,7 +54,7 @@ async function login(email, senha) {
 
         return { conexaoConvertida, statusCode }
     } catch (error) {
-        return notificacaoToastify(error.message)
+        return { erro: error.message }
     }
 }
 
