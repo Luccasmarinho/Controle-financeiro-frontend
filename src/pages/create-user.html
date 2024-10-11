@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastre-se</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -47,6 +47,11 @@
                     <i class="fa-solid fa-lock" id="icon-input"></i>
                 </div>
 
+                <div class="formulario__erro">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <span class="erro__text"></span>
+                </div>
+
                 <div class="formulario__btn">
                     <button class="btn-login"><a href="#">
                             Cadastrar
@@ -62,6 +67,7 @@
         </section>
     </main>
     <!-- <script src="../js/consulta-api.js" type="module"></script> -->
+    <script src="../js/user/validation-form-register.js" type="module"></script>
     <script src="../js/user/create-user.js" type="module"></script>
     <script src="../js/user/toggle-password.js" type="module"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

@@ -1,5 +1,6 @@
 import notificacaoToastify from "./user/notification.js"
-import { validacaoForm } from "./user/validation-form.js"
+import { validacaoFormLogin } from "./user/validation-form-login.js"
+import { validacaoFormCadastro } from "./user/validation-form-register.js"
 
 async function cadastrarUsuario(nome, email, senha) {
     try {
@@ -17,6 +18,7 @@ async function cadastrarUsuario(nome, email, senha) {
 
         if (!conexao.ok) {
             const errorData = await conexao.json()
+            validacaoFormCadastro(errorData.Mensagem)
             throw new Error(errorData.Mensagem)
         }
 
@@ -25,7 +27,7 @@ async function cadastrarUsuario(nome, email, senha) {
 
         return { conexaoConvertida, statusCode }
     } catch (error) {
-        return notificacaoToastify(error.message)
+        return { erro: error.message }
     }
 }
 
@@ -44,7 +46,7 @@ async function login(email, senha) {
 
         if (!conexao.ok) {
             const errorData = await conexao.json()
-            validacaoForm(errorData.Mensagem)
+            validacaoFormLogin(errorData.Mensagem)
             throw new Error(errorData.Mensagem)
             // throw new Error("Não foi possível efetuar o login.")
         }

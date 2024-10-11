@@ -1,20 +1,9 @@
-const formularioLogin = document.querySelector(".formulario");
 const inputEmail = document.querySelector("[type=email]");
 const inputSenha = document.querySelector("[type=password]");
 const erro = document.querySelector(".formulario__erro");
 const erroText = document.querySelector(".erro__text");
 
-const a = [
-    "O campo senha não pode ficar vazio.",
-    "O campo email não pode ficar vazio.",
-    "O campo senha deve ter no mínimo 8 caracteres.",
-    "O campo senha deve ter no máximo 50 caracteres.",
-    "Email não cadastrado.",
-    "Senha incorreta. Tente novamente.",
-    "Digite um email válido."
-]
-
-function validacaoForm(mensagem) {
+function validacaoFormLogin(mensagem) {
     if (!inputEmail.value && !inputSenha.value) {
         erro.style.display = "flex"
         erroText.textContent = "Preencha os campos E-mail e Senha"
@@ -69,4 +58,4 @@ function validacaoForm(mensagem) {
 
 }
 
-export { validacaoForm }
+export { validacaoFormLogin }
