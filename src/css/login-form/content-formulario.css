@@ -88,15 +88,18 @@
     letter-spacing: 2px;
 }
 
-.formulario__cadastre-se {
+.formulario__cadastre-se,
+.formulario__esqueceu-sua-senha {
     font-size: 14px;
 }
 
-.formulario__cadastre-se a {
+.formulario__cadastre-se a,
+.formulario__esqueceu-sua-senha a {
     color: var(--color01);
-    transition: .4s;
+    transition: .3s;
 }
 
-.formulario__cadastre-se a:hover {
+.formulario__cadastre-se a:hover,
+.formulario__esqueceu-sua-senha a:hover {
     color: #0f0e51;
 }

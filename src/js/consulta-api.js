@@ -1,4 +1,5 @@
 import notificacaoToastify from "./user/notification.js"
+import { validacaoFormEsqueceuSenha } from "./user/validation-forgot-pass.js"
 import { validacaoFormLogin } from "./user/validation-form-login.js"
 import { validacaoFormCadastro } from "./user/validation-form-register.js"
 
@@ -235,6 +236,33 @@ async function dadosUsuario() {
     }
 }
 
+async function esqueceuSenha(email) {
+    try {
+        const conexao = await fetch("http://localhost:3000/send", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                email
+            })
+        })
+
+        if (!conexao.ok) {
+            const errorData = await conexao.json()
+            validacaoFormEsqueceuSenha(errorData.Mensagem)
+            throw new Error(errorData.Mensagem)
+        }
+
+        const statusCode = conexao.status
+        const conexaoConvertida = await conexao.json()
+
+        return { conexaoConvertida, statusCode }
+    } catch (error) {
+        return { erro: error.message }
+    }
+}
+
 const api = {
     cadastrarUsuario,
     login,
@@ -242,7 +270,8 @@ const api = {
     cadastrarTransacao,
     listaDeTransacoes,
     totalTransacoes,
-    deletarTransacao
+    deletarTransacao,
+    esqueceuSenha
 }
 
 export default api

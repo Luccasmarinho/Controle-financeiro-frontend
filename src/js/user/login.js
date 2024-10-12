@@ -5,13 +5,13 @@ const inputEmail = document.querySelector("[type=email]");
 const inputSenha = document.querySelector("[type=password]");
 const modal = document.getElementById('loadingModal');
 
-// const idUser = []
 
-function redir() {
-    window.location.href = "../pages/create-user.html"
+function redir(caminho) {
+    window.location.href = caminho
 }
 
-document.getElementById("link-cadastrar").addEventListener("click", redir)
+document.getElementById("link-esqueceu-senha").addEventListener("click", () => redir("../pages/forgot-password.html"))
+document.getElementById("link-cadastrar").addEventListener("click", () => redir("../pages/create-user.html"))
 
 function guardarToken(token) {
     const objToken = {
@@ -31,7 +31,6 @@ formularioLogin.addEventListener("submit", async (event) => {
         const { id } = buscaApi.conexaoConvertida.user
 
         guardarToken(token)
-        // idUser.push(id)
 
         modal.style.display = "flex"
 
