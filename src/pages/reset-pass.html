@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Redefinir senha</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -25,7 +25,7 @@
 
         <section class="content__container-form">
             <div class="container-form__text">
-                <h2 class="text-login">Login</h2>
+                <h2 class="text-login">Redefina sua senha</h2>
             </div>
         </section>
 
@@ -34,12 +34,13 @@
             <form action="#" class="formulario">
 
                 <div class="formulario__input-area">
-                    <input type="email" class="input-area__input input-email" placeholder="Email">
-                    <i class="fa-solid fa-envelope" id="icon-input"></i>
+                    <input type="password" class="input-area__input" placeholder="Senha" id="input-pass">
+                    <i class="fa-solid fa-eye" id="icon-eye"></i>
+                    <i class="fa-solid fa-lock" id="icon-input"></i>
                 </div>
 
                 <div class="formulario__input-area">
-                    <input type="password" class="input-area__input" placeholder="Senha" id="input-pass">
+                    <input type="password" class="input-area__input" placeholder="Repita senha" id="input-pass">
                     <i class="fa-solid fa-eye" id="icon-eye"></i>
                     <i class="fa-solid fa-lock" id="icon-input"></i>
                 </div>
@@ -51,27 +52,16 @@
 
                 <div class="formulario__btn">
                     <button class="btn-login"><a href="#">
-                            Login
+                            Enviar
                         </a></button>
                 </div>
-
-
-                <p class="formulario__cadastre-se">
-                    Ainda não tem uma conta?
-                    <a href="#" id="link-cadastrar">Cadastre-se</a>
-                </p>
-
-                <div class="formulario__esqueceu-sua-senha">
-                    <a href="#" id="link-esqueceu-senha">Esqueceu sua senha?</a>
-                </div>
-
             </form>
 
         </section>
     </main>
     <!-- <script src="../js/consulta-api.js" type="module"></script> -->
-    <!-- <script src="../js/user/validation-form-login.js" type="module"></script> -->
-    <script src="../js/user/login.js" type="module"></script>
+    <!-- <script src="../js/user/validation-reset-pass.js" type="module"></script> -->
+    <script src="../js/user/reset-password.js" type="module"></script>
     <script src="../js/user/toggle-password.js" type="module"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>

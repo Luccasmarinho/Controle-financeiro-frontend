@@ -2,6 +2,7 @@ import notificacaoToastify from "./user/notification.js"
 import { validacaoFormEsqueceuSenha } from "./user/validation-forgot-pass.js"
 import { validacaoFormLogin } from "./user/validation-form-login.js"
 import { validacaoFormCadastro } from "./user/validation-form-register.js"
+import { validacaoRedefinirSenha } from "./user/validation-reset-pass.js"
 
 async function cadastrarUsuario(nome, email, senha) {
     try {
@@ -263,6 +264,36 @@ async function esqueceuSenha(email) {
     }
 }
 
+async function redefinirSenha(token, senha) {
+    try {
+        const conexao = await fetch(`http://localhost:3000/redefinir-senha?token=${token}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                senha
+            })
+        })
+
+        if (!conexao.ok) {
+            const errorData = await conexao.json()
+            console.log(errorData.Mensagem);
+            validacaoRedefinirSenha(errorData.Mensagem)
+            throw new Error(errorData.Mensagem)
+        }
+
+        const statusCode = conexao.status
+        const conexaoConvertida = await conexao.json()
+
+        return { conexaoConvertida, statusCode }
+    } catch (error) {
+        return { erro: error.message }
+    }
+}
+
+
+
 const api = {
     cadastrarUsuario,
     login,
@@ -271,7 +302,8 @@ const api = {
     listaDeTransacoes,
     totalTransacoes,
     deletarTransacao,
-    esqueceuSenha
+    esqueceuSenha,
+    redefinirSenha
 }
 
 export default api

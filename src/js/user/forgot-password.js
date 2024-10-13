@@ -4,7 +4,7 @@ import notificacaoToastify from "./notification.js";
 const inputEmail = document.querySelector("[type=email]");
 const form = document.querySelector(".formulario");
 
-async function seila(evento) {
+async function enviarEmail(evento) {
     evento.preventDefault()
     const buscaApi = await api.esqueceuSenha(inputEmail.value)
 
@@ -22,4 +22,4 @@ async function seila(evento) {
 
 }
 
-form.addEventListener("submit", (event) => seila(event))
+form.addEventListener("submit", (event) => enviarEmail(event))
