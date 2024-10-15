@@ -5,6 +5,7 @@
 @import url("content-gastos.css");
 @import url("content-form.css");
 @import url("content-tabela.css");
+@import url("media-queries.css");
 
 * {
     padding: 0;

@@ -49,6 +49,10 @@ function criarElementos(categoria, valor, tipo = "icon-entrada") {
                     await api.deletarTransacao(transacaoId)
                     tr.remove()
                     carregarValor()
+                    if (arrayTransacoes.length == 1) {
+                        document.querySelector(".tabela__sem-transacoes").style.display = "flex"
+
+                    }
                 })
                 break
             default:
@@ -61,6 +65,11 @@ function criarElementos(categoria, valor, tipo = "icon-entrada") {
 async function carregarTransacoes() {
     const buscaTransacoes = await api.listaDeTransacoes(id)
     const { listarTransacao } = buscaTransacoes.conexaoConvertida
+    if (listarTransacao.length == 0) {
+        document.querySelector(".tabela__sem-transacoes").style.display = "flex"
+    } else {
+        document.querySelector(".tabela__sem-transacoes").style.display = "none"
+    }
     listarTransacao.forEach((dados) => {
         criarElementos(dados.categoria, Number(dados.valor).toFixed(2), `icon-${dados.tipo}`)
     })
@@ -77,6 +86,7 @@ async function criarTransacao(evento) {
         return
     } else if (buscaCadastrarTransacao.statusCode == 200) {
         criarElementos(inputCategoria.value, Number(inputValor.value).toFixed(2), `icon-${valorInputTipo}`)
+        document.querySelector(".tabela__sem-transacoes").style.display = "none"
         inputCategoria.value = ""
         inputValor.value = ""
     }

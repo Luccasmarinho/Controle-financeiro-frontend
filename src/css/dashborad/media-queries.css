@@ -1,0 +1,45 @@
+@media screen and (max-width: 450px) {
+    .content {
+        width: 100%;
+        gap: 0;
+        top: 65px;
+    }
+
+    /* .cabecalho__user-name {
+        width: 100%;
+        margin-right: 0;
+        justify-content: flex-start;
+        padding: 0 10px;
+    } */
+
+    .cabecalho__titulo {
+        display: none;
+    }
+
+    .content__entrada-saida-total {
+        flex-direction: column;
+    }
+
+    .content__box-values {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .formulario {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .formulario__input-area,
+    .formulario__input-area-radio {
+        width: 60%;
+    }
+
+    .formulario__btn-adicionar {
+        width: 60%;
+    }
+
+    .btn-adicionar {
+        width: 100%
+    }
+}

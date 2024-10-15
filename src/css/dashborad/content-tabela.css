@@ -29,7 +29,7 @@
     text-align: left;
 }
 
-.tabela__linha {
+/* .tabela__linha {
     width: 97%;
     height: 1px;
     background-color: #00000029;
@@ -39,6 +39,16 @@
     right: 0;
     left: 0;
     margin: auto;
+} */
+
+
+.tabela__corpo:nth-child(odd) {
+    background-color: #dddada;
+}
+
+.tabela__corpo:hover {
+    background-color: var(--color01);
+    transition: .4s;
 }
 
 .corpo__btn-trash {
@@ -51,4 +61,15 @@
 
 .corpo__btn-trash:hover {
     color: red;
+}
+
+.tabela__sem-transacoes {
+    background-color: #F8FAFA;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
