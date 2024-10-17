@@ -4,9 +4,11 @@ import { validacaoFormLogin } from "./user/validation-form-login.js"
 import { validacaoFormCadastro } from "./user/validation-form-register.js"
 import { validacaoRedefinirSenha } from "./user/validation-reset-pass.js"
 
+const linkApi = "https://controle-financeiro-api.vercel.app"
+
 async function cadastrarUsuario(nome, email, senha) {
     try {
-        const conexao = await fetch("http://localhost:3000/usuarios", {
+        const conexao = await fetch(`${linkApi}/usuarios`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -35,7 +37,7 @@ async function cadastrarUsuario(nome, email, senha) {
 
 async function login(email, senha) {
     try {
-        const conexao = await fetch("http://localhost:3000/login", {
+        const conexao = await fetch(`${linkApi}/login`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -66,7 +68,7 @@ async function cadastrarTransacao(categoria, valor, tipo, usuario_id) {
     try {
         const token = JSON.parse(localStorage.getItem("token")).token
 
-        const conexao = await fetch("http://localhost:3000/transacoes", {
+        const conexao = await fetch(`${linkApi}/transacoes`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
@@ -105,8 +107,8 @@ async function cadastrarTransacao(categoria, valor, tipo, usuario_id) {
 
 async function listaDeTransacoes(id, page, limit) {
     const url = !page && !limit
-        ? `http://localhost:3000/transacoes?usuario_id=${id}`
-        : `http://localhost:3000/transacoes?usuario_id=${id}&page=${page}&limit=${limit}`
+        ? `${linkApi}/transacoes?usuario_id=${id}`
+        : `${linkApi}/transacoes?usuario_id=${id}&page=${page}&limit=${limit}`
     try {
         const token = JSON.parse(localStorage.getItem("token")).token
         const conexao = await fetch(url, {
@@ -134,7 +136,7 @@ async function listaDeTransacoes(id, page, limit) {
 async function deletarUsuario(id) {
     // const token = aqui vai pegar o token do localstorage
     try {
-        const conexao = await fetch(`http://localhost:3000/usuarios/${id}`, {
+        const conexao = await fetch(`${linkApi}/usuarios/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
@@ -157,7 +159,7 @@ async function deletarUsuario(id) {
 async function deletarTransacao(id) {
     try {
         const token = JSON.parse(localStorage.getItem("token")).token
-        const conexao = await fetch(`http://localhost:3000/transacoes/${id}`, {
+        const conexao = await fetch(`${linkApi}/transacoes/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
@@ -182,7 +184,7 @@ async function deletarTransacao(id) {
 async function totalTransacoes(id) {
     try {
         const token = JSON.parse(localStorage.getItem("token")).token
-        const conexao = await fetch(`http://localhost:3000/transacoes/total?usuario_id=${id}`, {
+        const conexao = await fetch(`${linkApi}/transacoes/total?usuario_id=${id}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json",
@@ -208,7 +210,7 @@ async function dadosUsuario() {
 
     try {
         const token = JSON.parse(localStorage.getItem("token")).token
-        const conexao = await fetch("http://localhost:3000/dados/usuario", {
+        const conexao = await fetch(`${linkApi}/dados/usuario`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json",
@@ -239,7 +241,7 @@ async function dadosUsuario() {
 
 async function esqueceuSenha(email) {
     try {
-        const conexao = await fetch("http://localhost:3000/send", {
+        const conexao = await fetch(`${linkApi}/send`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -266,7 +268,7 @@ async function esqueceuSenha(email) {
 
 async function redefinirSenha(token, senha) {
     try {
-        const conexao = await fetch(`http://localhost:3000/redefinir-senha?token=${token}`, {
+        const conexao = await fetch(`${linkApi}/redefinir-senha?token=${token}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json"

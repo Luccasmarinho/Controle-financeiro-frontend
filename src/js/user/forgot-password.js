@@ -7,6 +7,7 @@ const form = document.querySelector(".formulario");
 async function enviarEmail(evento) {
     evento.preventDefault()
     const buscaApi = await api.esqueceuSenha(inputEmail.value)
+    console.log(buscaApi);
 
     if (!buscaApi.statusCode) {
         return

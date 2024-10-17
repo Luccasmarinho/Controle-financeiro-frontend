@@ -47,8 +47,9 @@
 }
 
 .tabela__corpo:hover {
-    background-color: var(--color01);
     transition: .4s;
+    box-shadow: 1px 1px 5px #333,
+        -1px -1px 5px #333;
 }
 
 .corpo__btn-trash {
